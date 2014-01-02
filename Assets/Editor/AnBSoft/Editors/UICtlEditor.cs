@@ -475,7 +475,7 @@ public class UICtlEditor : EditorWindow, IGUIHelper, IGUIScriptSelector
 		if (GUILayout.Button("Clone", "toolbarButton"))
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you wish to copy this transition to all others in this set?", "Yes", "No"))
 			{
-				Undo.RegisterUndo(this, "Clone transition");
+				Undo.RecordObject(this, "Clone transition");
 				transitions.CloneAll(curFromTrans);
 				isDirty = true;
 			}
@@ -501,14 +501,15 @@ public class UICtlEditor : EditorWindow, IGUIHelper, IGUIScriptSelector
 #else
 		if (GUILayout.Button("+", "toolbarButton"))
 		{
-			Undo.RegisterUndo(this, "Add transition element");
+			Undo.RecordObject(this, "Add transition element");
+            Undo.RecordObject(this, "Add transition element");
 			curTransElement = transitions.list[curFromTrans].Add();
 			isDirty = true;
 		}
 		if (transitions.list[curFromTrans].animationTypes.Length > 0)
 			if (GUILayout.Button("-", "toolbarButton"))
 			{
-				Undo.RegisterUndo(this, "Delete transition element");
+				Undo.RecordObject(this, "Delete transition element");
 				transitions.list[curFromTrans].Remove(curTransElement);
 				isDirty = true;
 			}

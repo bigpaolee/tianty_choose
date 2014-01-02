@@ -96,7 +96,7 @@ public class UIPanelBaseInspector : Editor, IGUIHelper
 		if (GUILayout.Button("Clone", "toolbarButton"))
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you wish to copy this transition to all others in this set?", "Yes", "No"))
 			{
-				Undo.RegisterUndo(this, "Clone transition");
+				Undo.RecordObject(this, "Clone transition");
 				panel.Transitions.CloneAll(curTrans);
 				isDirty = true;
 			}
@@ -125,14 +125,14 @@ public class UIPanelBaseInspector : Editor, IGUIHelper
 
 		if (GUILayout.Button("+", "toolbarButton"))
 		{
-			Undo.RegisterUndo(this, "Add transition element");
+			Undo.RecordObject(this, "Add transition element");
 			curTransElement = panel.Transitions.list[curTrans].Add();
 			isDirty = true;
 		}
 		if (panel.Transitions.list[curTrans].animationTypes.Length > 0)
 			if (GUILayout.Button("-", "toolbarButton"))
 			{
-				Undo.RegisterUndo(this, "Delete transition element");
+				Undo.RecordObject(this, "Delete transition element");
 				panel.Transitions.list[curTrans].Remove(curTransElement);
 				isDirty = true;
 			}
@@ -203,9 +203,7 @@ public class UIPanelBaseInspector : Editor, IGUIHelper
 
 	public Vector3 Vector3Field(string label, Vector3 val)
 	{
-		EditorGUIUtility.LookLikeControls();
 		Vector3 v = EditorGUILayout.Vector3Field(label, val);
-		EditorGUIUtility.LookLikeInspector();
 		return v;
 	}
 

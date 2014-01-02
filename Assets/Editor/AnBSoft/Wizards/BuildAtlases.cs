@@ -298,7 +298,7 @@ public class BuildAtlases : ScriptableWizard
 				if (PrefabType.PrefabInstance != PrefabUtility.GetPrefabType(objList[i]))
 					sprites.Add(objList[i]);
 	#else
-				if (PrefabType.PrefabInstance != EditorUtility.GetPrefabType(objList[i]))
+                if (PrefabType.PrefabInstance != PrefabUtility.GetPrefabType(objList[i]))
 					sprites.Add(objList[i]);
 	#endif
 #endif

@@ -174,7 +174,7 @@ public class SpriteSizer : ScriptableWizard
 	#if (UNITY_3_5 || UNITY_3_6 || UNITY_3_7 || UNITY_3_8 || UNITY_3_9)
 				PrefabType ptype = PrefabUtility.GetPrefabType(((SpriteRoot)sprites[i]).gameObject);
 	#else
-				PrefabType ptype = EditorUtility.GetPrefabType(((SpriteRoot)sprites[i]).gameObject);
+                PrefabType ptype = PrefabUtility.GetPrefabType(((SpriteRoot)sprites[i]).gameObject);
 	#endif
 				// We can't do prefabs with perspective cameras:
 				if (ptype == PrefabType.Prefab || ptype == PrefabType.ModelPrefab)
@@ -249,7 +249,7 @@ public class SpriteSizer : ScriptableWizard
 	#if (UNITY_3_5 || UNITY_3_6 || UNITY_3_7 || UNITY_3_8 || UNITY_3_9)
 					if (PrefabType.PrefabInstance != PrefabUtility.GetPrefabType(o[i]))
 	#else
-					if (PrefabType.PrefabInstance != EditorUtility.GetPrefabType(o[i]))
+                    if (PrefabType.PrefabInstance != PrefabUtility.GetPrefabType(o[i]))
 	#endif
 #endif
 						sprites.Add(o[i]);
